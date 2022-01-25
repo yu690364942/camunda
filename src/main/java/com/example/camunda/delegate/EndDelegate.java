@@ -1,15 +1,13 @@
-package com.example.camunda.listener;
+package com.example.camunda.delegate;
 
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
-import org.camunda.bpm.engine.delegate.DelegateTask;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.engine.delegate.TaskListener;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>TiTle: CamundaListener</p>
- * <p>Description: CamundaListener</p>
+ * <p>TiTle: EndDelegate</p>
+ * <p>Description: EndDelegate</p>
  * <p>Company: www.nbcb.cn</p>
  *
  * @author yhq
@@ -18,10 +16,9 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class CamundaListener implements TaskListener {
-
+public class EndDelegate implements JavaDelegate {
     @Override
-    public void notify(DelegateTask delegateTask) {
-
+    public void execute(DelegateExecution delegateExecution) throws Exception {
+        log.info("end {}",delegateExecution);
     }
 }

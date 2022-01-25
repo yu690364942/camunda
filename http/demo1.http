@@ -1,0 +1,22 @@
+### 开始流程
+POST http://localhost:8080/runtime/start?processKey=demo1&businessKey=test1
+Content-Type: application/json
+
+{
+  "assigner": "approve_1"
+}
+### 查询全部流程
+GET http://localhost:8080/runtime/list
+Content-Type: application/x-www-form-urlencoded
+
+processKey=demo1
+
+###
+GET http://localhost:8080/task/list
+
+
+###
+GET http://localhost:8080/task/claim?businessKey=test1&assigner=approver_1
+
+###
+GET http://localhost:8080/history/queryHistory?id=1b9f4e36-7daa-11ec-8b7d-9405bb139dbe

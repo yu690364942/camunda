@@ -2,9 +2,13 @@ package com.example.camunda.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.HistoryService;
+import org.camunda.bpm.engine.history.HistoricTaskInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>TiTle: HistoryController</p>
@@ -21,4 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class HistoryController {
     @Autowired
     HistoryService historyService;
+
+    @RequestMapping("queryHistory")
+    public List<Map> list(String id){
+        final List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceId(id).orderByHistoricTaskInstanceEndTime().asc().list();
+
+        return null;
+    }
 }
