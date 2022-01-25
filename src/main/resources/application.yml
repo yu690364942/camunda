@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      timeBetweenEvictionRunsMillis: 60000        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      minEvictableIdleTimeMillis: 30000           # 配置一个连接在池中最小生存的时间，单位是毫秒
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true                # 打开PSCache，并且指定每个连接上PSCache的大小
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: config
+      connectionProperties: config.decrypt=true;config.decrypt.key=${public-key};druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;
+  # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+---
+public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKo63rdVNg10CNipGgnyTcrwJ8wM57aUiEPAHf0OqNVUF4x6KX0bnFD5trEoo93pfdxUBBCiJXPJcveU8NFBfkMCAwEAAQ==
+spring:
+  profiles: dev
+  datasource:
+    druid:
+      initialSize: 1                              # 初始化大小，最小，最大
+      minIdle: 1
+      maxActive: 10
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      url: jdbc:mysql://192.168.8.200:3306/camunda?useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+      username: root
+      password: c3mHd5M246KpzDfH8i/kzGoRvjsdipLJA4Dm9fZL/5B6qVMp0nj0Dz8rpETIRXTPFmHaoKi+MJshoN32pWmA/A==
