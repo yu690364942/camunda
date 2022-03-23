@@ -1,9 +1,17 @@
 ### 开始流程
-POST http://localhost:8080/runtime/start?processKey=demo1&businessKey=test1
+POST http://localhost:8080/runtime/start?processKey=test&businessKey=test2
 Content-Type: application/json
 
 {
-  "assigner": "approve_1"
+  "app": {
+    "bcstUserCode":"207728"
+  },
+  "bcstAdmin": "1",
+  "columns": [
+    [ "1","2"],
+    ["3","4"]
+  ]
+
 }
 ### 查询全部流程
 GET http://localhost:8080/runtime/list
@@ -20,3 +28,11 @@ GET http://localhost:8080/task/claim?businessKey=test1&assigner=approver_1
 
 ###
 GET http://localhost:8080/history/queryHistory?id=1b9f4e36-7daa-11ec-8b7d-9405bb139dbe
+###
+POST http://localhost:8080/test/test
+Content-Type: application/json
+
+{
+  "a": "123",
+  "b": "12sad"
+}

@@ -10,11 +10,12 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true                # 打开PSCache，并且指定每个连接上PSCache的大小
       maxPoolPreparedStatementPerConnectionSize: 20
-      filters: config
+      filters: config,slf4j
       connectionProperties: config.decrypt=true;config.decrypt.key=${public-key};druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;
   # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
 ---
-public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKo63rdVNg10CNipGgnyTcrwJ8wM57aUiEPAHf0OqNVUF4x6KX0bnFD5trEoo93pfdxUBBCiJXPJcveU8NFBfkMCAwEAAQ==
+#public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKo63rdVNg10CNipGgnyTcrwJ8wM57aUiEPAHf0OqNVUF4x6KX0bnFD5trEoo93pfdxUBBCiJXPJcveU8NFBfkMCAwEAAQ==
+public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIC61EeJSk4IUzOGDfj2o4h1eDbms3vTNeUU69Uqi/kLsfCVcOPQ33z8Nm3DUtSkjSRvs0IyNDkvni+KLaRtgdkCAwEAAQ==
 spring:
   profiles: dev
   datasource:
@@ -23,6 +24,10 @@ spring:
       minIdle: 1
       maxActive: 10
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-      url: jdbc:mysql://192.168.8.200:3306/camunda?useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
-      username: root
-      password: c3mHd5M246KpzDfH8i/kzGoRvjsdipLJA4Dm9fZL/5B6qVMp0nj0Dz8rpETIRXTPFmHaoKi+MJshoN32pWmA/A==
+#      url: jdbc:mysql://192.168.8.200:3306/camunda?useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+#      username: root
+#      password: c3mHd5M246KpzDfH8i/kzGoRvjsdipLJA4Dm9fZL/5B6qVMp0nj0Dz8rpETIRXTPFmHaoKi+MJshoN32pWmA/A==
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      url: jdbc:mysql://yuhq.top:4321/camunda?useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+      username: yuhaoqiang
+      password: F+bW0FI18D0LxxOJub2uGC4vz3HEALf02S6v8IKVaNiZeMoUuWOfDoXQ7gJz1yAIXMgPa7nsBqY9Vi2r3enMCA==

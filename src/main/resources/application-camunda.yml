@@ -6,7 +6,7 @@ camunda:
       first-name: admin
     filter:
       create: all
-    deployment-resource-pattern: classpath:processes/*.bpmn
+    deployment-resource-pattern: classpath:process/*.bpmn
     database:
       schema-update: true
       jdbc-batch-processing: false

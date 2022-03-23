@@ -1,5 +1,6 @@
 package com.example.camunda.controller;
 
+import com.example.camunda.service.AsyncService;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RepositoryController {
     @Autowired
     private RepositoryService repositoryService;
+
+    @Autowired
+    private AsyncService asyncService;
+    @RequestMapping("test")
+    public boolean test() throws InterruptedException {
+        return asyncService.test();
+    }
 }

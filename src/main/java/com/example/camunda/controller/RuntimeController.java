@@ -35,13 +35,17 @@ public class RuntimeController {
 
     @RequestMapping("list")
     public void list(String processKey){
+        final Map<String, Object> variables = runtimeService.getVariables("404ced9f-92b2-11ec-a73c-9405bb139dbe");
         final List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().list();
+        final ProcessInstance processInstance = list.get(0);
         log.info("{}",list);
     }
 
-    @RequestMapping("list")
-    public void revertTask(String processId){
-        final ProcessInstanceModificationBuilder processInstanceModification = runtimeService.createProcessInstanceModification(processId);
+    @RequestMapping("list2")
+    public void revertTask(String processId,String startBeforeActivityName){
+        final ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceBusinessKey("").singleResult();
+        final Map<String, Object> variables = runtimeService.getVariables(processInstance.getId());
+        runtimeService.createProcessInstanceModification(processId).cancelActivityInstance(processId).startBeforeActivity(startBeforeActivityName).execute();
     }
 
 }

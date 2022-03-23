@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +30,14 @@ public class HistoryController {
 
     @RequestMapping("queryHistory")
     public List<Map> list(String id){
-        final List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceId(id).orderByHistoricTaskInstanceEndTime().asc().list();
-
+        // final List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceId(id).orderByHistoricTaskInstanceEndTime().asc().list();
+        final List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery()
+                .processInstanceId("dee93e14-e1dc-4c48-a9c4-19f45dfbc26f")
+                .orderByHistoricActivityInstanceStartTime()
+                .asc()
+                .list();
         return null;
     }
+
+
 }
