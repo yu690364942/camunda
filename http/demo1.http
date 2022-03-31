@@ -1,17 +1,17 @@
 ### 开始流程
-POST http://localhost:8080/runtime/start?processKey=test&businessKey=test2
+POST http://localhost:8080/runtime/start?processKey=servicetask&businessKey=test2
 Content-Type: application/json
 
 {
-  "app": {
-    "bcstUserCode":"207728"
-  },
-  "bcstAdmin": "1",
-  "columns": [
-    [ "1","2"],
-    ["3","4"]
-  ]
+  "users": ["1","2"]
+}
 
+###
+POST http://localhost:8080/runtime/start?processKey=servicetask2&businessKey=test2
+Content-Type: application/json
+
+{
+"user": "3"
 }
 ### 查询全部流程
 GET http://localhost:8080/runtime/list

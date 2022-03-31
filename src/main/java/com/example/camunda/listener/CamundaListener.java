@@ -1,11 +1,13 @@
 package com.example.camunda.listener;
 
 import lombok.extern.slf4j.Slf4j;
+import org.camunda.bpm.engine.HistoryService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.DelegateTask;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.delegate.TaskListener;
+import org.camunda.bpm.engine.history.HistoricTaskInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,10 +28,13 @@ public class CamundaListener implements TaskListener {
 
     @Autowired
     TaskService taskService;
+
+    @Autowired
+    HistoryService historyService;
     @Override
     public void notify(DelegateTask delegateTask) {
-        final Map<String, Object> app = (Map<String, Object>) delegateTask.getVariable("app");
-        app.put("abc", 123);
-        delegateTask.setVariable("app", app);
+
+        log.info("{} {}",delegateTask.getId(),delegateTask.getEventName());
+        log.info("reason {}",delegateTask.getDeleteReason());
     }
 }
