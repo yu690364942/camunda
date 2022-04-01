@@ -30,12 +30,9 @@ public class HistoryController {
 
     @RequestMapping("queryHistory")
     public List<Map> list(String id){
-        // final List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery().processInstanceId(id).orderByHistoricTaskInstanceEndTime().asc().list();
-        final List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery()
-                .processInstanceId("dee93e14-e1dc-4c48-a9c4-19f45dfbc26f")
-                .orderByHistoricActivityInstanceStartTime()
-                .asc()
-                .list();
+        final List<HistoricTaskInstance> test12312sad = historyService.createHistoricTaskInstanceQuery().processInstanceBusinessKey("test12312sad").list();
+        final HistoricTaskInstance historicTaskInstance = test12312sad.get(0);
+
         return null;
     }
 

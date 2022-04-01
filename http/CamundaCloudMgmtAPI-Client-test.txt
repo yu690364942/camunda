@@ -1,0 +1,6 @@
+
+
+export ZEEBE_ADDRESS='1a323089-947b-4f8c-b7b7-b41ce2042e77.bru-2.zeebe.camunda.io:443'
+export ZEEBE_CLIENT_ID='WHQDwBDTkYJ4DoxAhD-.wfLPpTPqdcZV'
+export ZEEBE_CLIENT_SECRET='ZxRh9BE4EPY521PDYSPrD0rjGsQhwJhwqa6PZDnVT~w4if2u~OA2SKeBi42Jg~AR'
+export ZEEBE_AUTHORIZATION_SERVER_URL='https://login.cloud.camunda.io/oauth/token'

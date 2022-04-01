@@ -5,8 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.impl.ProcessInstanceModificationBuilderImpl;
+import org.camunda.bpm.engine.impl.RuntimeServiceImpl;
 import org.camunda.bpm.engine.impl.cmd.AbstractProcessInstanceModificationCommand;
+import org.camunda.bpm.engine.impl.cmd.DeleteTaskCmd;
+import org.camunda.bpm.engine.impl.interceptor.CommandExecutor;
+import org.camunda.bpm.engine.runtime.ModificationBuilder;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
+import org.camunda.bpm.engine.runtime.ProcessInstanceModificationBuilder;
 import org.camunda.bpm.engine.task.Comment;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,14 +67,22 @@ public class TaskController {
 
     @RequestMapping("refuse")
     public void refuse(String processInstanceId) {
-        final ProcessInstanceModificationBuilderImpl modification = (ProcessInstanceModificationBuilderImpl) runtimeService.createProcessInstanceModification(processInstanceId);
         final List<Task> list = taskService.createTaskQuery().processInstanceId(processInstanceId).list();
-        final ActivityTaskCancellationCmd activityTaskCancellationCmd = new ActivityTaskCancellationCmd(processInstanceId, list.get(0).getId(),"test12312");
-        final ArrayList<AbstractProcessInstanceModificationCommand> commands = new ArrayList<>();
-        commands.add(activityTaskCancellationCmd);
-        modification.setModificationOperations(commands);
-        modification.startBeforeActivity("node1").execute();
+        final ActivityTaskCancellationCmd test12312 = new ActivityTaskCancellationCmd(processInstanceId, list.get(0).getId(), "test12312");
+        final ArrayList<AbstractProcessInstanceModificationCommand> abstractProcessInstanceModificationCommands = new ArrayList<>();
+        abstractProcessInstanceModificationCommands.add(test12312);
+        final ProcessInstanceModificationBuilderImpl processInstanceModification =
+                (ProcessInstanceModificationBuilderImpl) runtimeService.createProcessInstanceModification(processInstanceId);
+        processInstanceModification.setModificationOperations(abstractProcessInstanceModificationCommands);
+        processInstanceModification.startBeforeActivity("node1").execute();
     }
+
+    // @RequestMapping("refuse2")
+    // public void refuse2(String processInstanceId) {
+    //     final CommandExecutor commandExecutor = ((RuntimeServiceImpl) runtimeService).getCommandExecutor();
+    //     final List<Task> list = taskService.createTaskQuery().processInstanceId(processInstanceId).list();
+    //     modification.cancelActivityInstance(processInstanceId).startBeforeActivity("node1").execute();
+    // }
 
 
 
